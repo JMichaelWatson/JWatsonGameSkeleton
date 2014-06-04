@@ -1,5 +1,19 @@
 #include "Profiler.h"
 
+Profiler Profiler::theInstance;
+
+Profiler& Profiler::getInstance(){
+	return theInstance;
+}
+
+
+#ifdef PROFILING_ON
+#include <cassert>
+#include <fstream>
+using std::ofstream;
+using std::ios;
+#endif
+
 
 void Profiler::initialize(const char* fileName){
 	this ->fileName = fileName;
@@ -54,7 +68,7 @@ void Profiler::addEntry(const char* category, float time){
 		pc.name = category;
 		numUsedCategories++;
 	} else{
-		//assert(pc.name == category && category != NULL);
+		assert(pc.name == category && category != NULL);
 		assert(categoryIndex < numUsedCategories);
 	}
 	categoryIndex++;

@@ -4,23 +4,32 @@ bool Clock::initialize(){
 
 	if(! QueryPerformanceFrequency(&timeFrequency))
 		return false;
-	QueryPerformanceCounter(&timelastFrame);
+	QueryPerformanceCounter(&lastStartTime);
 	return true;
 
 }
 
 bool Clock::shutdown(){ return true; }
 
-void Clock::newFrame(){
+void Clock::start(){
+	QueryPerformanceCounter(&lastStartTime);
+}
+
+void Clock::stop(){
 	LARGE_INTEGER thisTime;
 	QueryPerformanceCounter(&thisTime);
 	LARGE_INTEGER delta;
-	delta.QuadPart = thisTime.QuadPart - timelastFrame.QuadPart;
+	delta.QuadPart = thisTime.QuadPart - lastStartTime.QuadPart;
 	deltaTime = ((float)delta.QuadPart) / timeFrequency.QuadPart;
-	timelastFrame.QuadPart = thisTime.QuadPart;
+	deltaLastLap.QuadPart = thisTime.QuadPart;
 }
 
-float Clock::timeElaspedLastFrame() const{
+void Clock::lap(){
+	stop();
+	start();
+}
+
+float Clock::lastLapTime() const{
 
 	return deltaTime;
 }

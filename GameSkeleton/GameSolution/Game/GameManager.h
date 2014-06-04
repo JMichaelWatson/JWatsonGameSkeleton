@@ -8,7 +8,7 @@
 #include "Orbitz.h"
 #include "EffectManager.h"
 #include "DrawValue.h"
-#include "Clock.h"
+#include "Profile.h"
 
 using Core::Input;
 using Engine::Vector2D;
@@ -22,7 +22,6 @@ public:
 	Orbitz orb;
 	EffectManager eManager;
 	DrawValue dV;
-	Clock clock;
 	void Draw(Core::Graphics& graphics);
 	void Update(float dt);
 	void init();

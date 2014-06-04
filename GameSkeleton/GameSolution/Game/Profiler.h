@@ -3,17 +3,18 @@
 
 
 #include <vector>
-#include <cassert>
-#include <fstream>
 
-using std::ofstream;
-using std::ios;
 using std::vector;
 
 
 class  Profiler
 {
 private:
+	Profiler() {}
+	Profiler(const Profiler&);
+	Profiler& operator-(const Profiler&);
+	static Profiler theInstance;
+#if PROFILING_ON
 	const char* fileName;
 	unsigned int frameIndex;
 	unsigned int categoryIndex;
@@ -24,11 +25,22 @@ private:
 		vector<float> sample;
 	}; 
 	vector<ProfileCategory> categories;
+#endif
 public:
+	static Profiler& getInstance();
+#if PROFILING_ON
 	void addEntry(const char* category, float time);
 	void newFrame();
 	void shutdown();
 	void initialize(const char* fileName);
+#else
+	void addEntry(const char* category, float time){}
+	void newFrame(){}
+	void shutdown(){}
+	void initialize(const char* fileName){}
+#endif
 };
+
+#define profiler Profiler::getInstance()
 
 #endif

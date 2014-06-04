@@ -5,14 +5,15 @@ void GameManager::Draw(Core::Graphics& graphics){
 
 	graphics.SetColor(RGB(100,100,100));
 	graphics.DrawString(300,10,"SPF:");
-	dV.drawValue(graphics,330,10,(clock.timeElaspedLastFrame()));
+	dV.drawValue(graphics,330,10,(clock.lastLapTime()));
 
 	graphics.DrawString(400,10,"FPS:");
-	dV.drawValue(graphics,430,10,1/clock.timeElaspedLastFrame());
+	dV.drawValue(graphics,430,10,1/clock.lastLapTime());
 
-	graphics.SetBackgroundColor(RGB(10,25,10));
-
-	myShip.drawShip(graphics);
+	{
+		PROFILE("Ship Draw");
+		myShip.drawShip(graphics);
+	}
 	eShip.drawShip(graphics);
 
 	Matrix3D startTemp = Engine::Translation3D(800,500);
@@ -36,7 +37,7 @@ void GameManager::Draw(Core::Graphics& graphics){
 
 void GameManager::Update(float dt){
 
-	clock.newFrame();
+	clock.lap();
 
 	myShip.update(dt);
 	eShip.update(dt);

@@ -6,13 +6,15 @@
 class Clock
 {
 	LARGE_INTEGER timeFrequency;
-	LARGE_INTEGER timelastFrame;
-	LARGE_INTEGER detlaLastFrame;
+	LARGE_INTEGER lastStartTime;
+	LARGE_INTEGER deltaLastLap;
 	float deltaTime;
 public:
 	bool initialize();
 	bool shutdown();
-	void newFrame();
-	float timeElaspedLastFrame() const;
+	void start();
+	void stop();
+	void lap();
+	float lastLapTime() const;
 }; 
 #endif

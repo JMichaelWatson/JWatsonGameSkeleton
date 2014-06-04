@@ -51,7 +51,7 @@
       </PrecompiledHeader>
       <WarningLevel>Level4</WarningLevel>
       <Optimization>Disabled</Optimization>
-      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;%(PreprocessorDefinitions)</PreprocessorDefinitions>
+      <PreprocessorDefinitions>WIN32;_DEBUG;_WINDOWS;PROFILING_ON;%(PreprocessorDefinitions)</PreprocessorDefinitions>
       <AdditionalIncludeDirectories>$(SolutionDir)\Engine;$(SolutionDir)\Core\include</AdditionalIncludeDirectories>
       <TreatWarningAsError>true</TreatWarningAsError>
     </ClCompile>
@@ -96,6 +96,7 @@
     <ClCompile Include="Orbitz.cpp" />
     <ClCompile Include="Partical.cpp" />
     <ClCompile Include="ParticalEffect.cpp" />
+    <ClCompile Include="Profile.cpp" />
     <ClCompile Include="Profiler.cpp" />
     <ClCompile Include="Ship.cpp" />
     <ClCompile Include="Turret.cpp" />
@@ -110,6 +111,7 @@
     <ClInclude Include="Orbitz.h" />
     <ClInclude Include="Partical.h" />
     <ClInclude Include="ParticalEffect.h" />
+    <ClInclude Include="Profile.h" />
     <ClInclude Include="Profiler.h" />
     <ClInclude Include="Ship.h" />
     <ClInclude Include="Turret.h" />
