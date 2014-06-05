@@ -88,6 +88,10 @@ void GameManager::Draw(Core::Graphics& graphics){
 	eManager.draw(graphics);
 
 ////////////////////////////////////////////////////////////////////
+
+	if(!tShip.isAlive){
+		tShip.isAlive = true;
+	}
 }
 
 void GameManager::Update(float dt){

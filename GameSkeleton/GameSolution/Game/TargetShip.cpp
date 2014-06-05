@@ -34,8 +34,9 @@ void TargetShip::checkIfAlive(Bullet* bullet){
 	for(int i = 0; i < 100; i++){
 		if(bullet[i].active){
 			Vector2D result = position - bullet[i].postion;
-			if(Engine::Length(result) <= 10.0f){
+			if(Engine::Length(result) <= 15.0f){
 				isAlive = false;
+				position = Vector2D(ran.randomInRange(10,900), ran.randomInRange(10,700));
 				bullet[i].active = false;
 			}
 		}

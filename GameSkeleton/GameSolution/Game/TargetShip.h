@@ -4,6 +4,7 @@
 #include"Engine.h"
 #include"Vector2D.h"
 #include "Bullet.h"
+#include "Random.h"
 
 using Engine::Vector2D;
 using Core::Graphics;
@@ -13,6 +14,7 @@ class TargetShip
 {
 private:
 	Vector2D velocity;
+	Random ran;
 public:
 	bool isAlive;
 	Vector2D position;
