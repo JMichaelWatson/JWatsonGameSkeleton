@@ -9,6 +9,7 @@
 #include "EffectManager.h"
 #include "DrawValue.h"
 #include "Profile.h"
+#include "Clock.h"
 
 using Core::Input;
 using Engine::Vector2D;
@@ -18,6 +19,9 @@ class GameManager
 public:
 	GameManager();
 	Ship myShip;
+	Clock fpsClock;
+	Clock clock;
+	float dt;
 	EnemyShip eShip;
 	Orbitz orb;
 	EffectManager eManager;
