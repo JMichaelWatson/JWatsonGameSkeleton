@@ -10,7 +10,8 @@
 #include "DrawValue.h"
 #include "Profile.h"
 #include "Clock.h"
-
+#include "TargetShip.h"
+#include "Random.h"
 using Core::Input;
 using Engine::Vector2D;
 
@@ -19,10 +20,12 @@ class GameManager
 public:
 	GameManager();
 	Ship myShip;
+	Random ran;
 	Clock fpsClock;
 	Clock clock;
 	float dt;
 	EnemyShip eShip;
+	TargetShip tShip;
 	Orbitz orb;
 	EffectManager eManager;
 	DrawValue dV;

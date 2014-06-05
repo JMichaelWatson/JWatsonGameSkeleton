@@ -1,6 +1,4 @@
 #include "Turret.h"
-#include "DrawValue.h"
-#include "Bullet.h"
 
 
 Vector2D tlines[] = {
@@ -10,7 +8,6 @@ Vector2D tlines[] = {
 	Vector2D(-2,0)
 };
 
-Bullet bullets[100];
 
 void Turret::draw(Graphics& graphics, Vector2D ship){
 	position = ship;

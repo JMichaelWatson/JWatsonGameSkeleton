@@ -1,6 +1,5 @@
 #include "Ship.h"
-#include "DrawValue.h"
-#include "Turret.h"
+
 #include "EffectManager.h"
 
 const int SCREEN_WIDTH = 1024;
@@ -31,8 +30,7 @@ Vector2D border[] = {
 };
 
 char mode = 'w';
-DrawValue dValue;
-Turret turret;
+
 void Ship::drawShip(Graphics& graphics){
 	sManager.draw(graphics);
 	char* response1 = "Current mode: ";

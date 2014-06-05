@@ -6,6 +6,9 @@
 #include "Core.h"
 #include "Vector2D.h"
 #include "Matrix3D.h"
+#include "DrawValue.h"
+#include "Turret.h"
+
 
 using Engine::Vector2D;
 using Core::Graphics;
@@ -15,6 +18,8 @@ using Engine::Matrix3D;
 class Ship
 {
 public:
+	DrawValue dValue;
+	Turret turret;
 	Vector2D position;
 	Vector2D velocity;
 	Vector3D accel;
