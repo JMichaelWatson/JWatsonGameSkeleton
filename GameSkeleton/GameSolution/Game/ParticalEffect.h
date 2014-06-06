@@ -17,7 +17,7 @@ public:
 	int count;
 	void draw(Graphics& graphics);
 	void update(float dt);
-	void updateFire(float dt, const int count, int type, Vector2D origin);
+	void updateFire(float dt, const int count, int type, Vector2D origin, float timeToLive);
 	void clearMem();
 };
 

@@ -14,8 +14,12 @@ void ParticalEffect::draw(Graphics& graphics){
 
 }
 
-void ParticalEffect::updateFire(float dt, const int scount, int type, Vector2D origin){
+void ParticalEffect::updateFire(float dt, const int scount, int type, Vector2D origin, float timeToLive){
 	count = scount;
+	int r = (int)ran.randomInRange(0,255);
+	int g = (int)ran.randomInRange(0,255);
+	int b = (int)ran.randomInRange(0,255);
+	Core::RGB color;
 	for (int x = 0; x < count; x ++){
 		if(!partsA[x].active)
 		{
@@ -24,11 +28,13 @@ void ParticalEffect::updateFire(float dt, const int scount, int type, Vector2D o
 			Vector2D rand;
 			if(type == 1){
 				rand = ran.RandomUnitVector() * randInt;
+				 color = RGB(r,g,b);
 			} else{
 				rand = ran.RandomUnitVectorHalf() * randInt;
+				color = RGB(200,10,40);
 			}
 			Vector2D newPath = origin + rand;
-			partsA[x].updateFire(dt, origin, newPath);
+			partsA[x].updateFire(dt, origin, newPath,timeToLive, color);
 		}
 	}
 }

@@ -5,6 +5,8 @@
 #include"Vector2D.h"
 #include "Bullet.h"
 #include "Random.h"
+#include "DrawValue.h"
+#include "EffectManager.h"
 
 using Engine::Vector2D;
 using Core::Graphics;

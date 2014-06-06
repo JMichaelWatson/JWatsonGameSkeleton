@@ -1,11 +1,9 @@
 #include "Ship.h"
-
 #include "EffectManager.h"
 
 const int SCREEN_WIDTH = 1024;
 const int SCREEN_HEIGHT = 750;
 
-EffectManager sManager;
 
 Vector2D shipPoints[]={
 	Vector2D(-3.0f, -22.0f),
@@ -32,7 +30,6 @@ Vector2D border[] = {
 char mode = 'w';
 
 void Ship::drawShip(Graphics& graphics){
-	sManager.draw(graphics);
 	char* response1 = "Current mode: ";
 	char* response ="";
 	if(mode == 'w'){
@@ -44,18 +41,19 @@ void Ship::drawShip(Graphics& graphics){
 	if(mode == 'a'){
 		response = "Arbiturary Bounce";
 	}
-	graphics.DrawString(100,40,"Hit 1..Wrap 2..Bounce 3..Arbitrary Bounce");
-	graphics.DrawString(100,50,response1); 
-	graphics.SetColor(RGB(100,200,100));
-	graphics.DrawString(100,60,response);
 
-	dValue.drawValue(graphics,100,100,info);
-	graphics.SetColor(RGB(200,75,30));
-	dValue.drawValue(graphics,100,150,angle);
+	graphics.SetColor(RGB(200,200,100));
+	graphics.DrawString(10,10,response1); 
+	graphics.SetColor(RGB(100,200,100));
+	graphics.DrawString(10,23,response);
+
+	//dValue.drawValue(graphics,100,100,info);
+	//dValue.drawValue(graphics,100,150,angle);
 
 	position.x = info.m[0][2];
 	position.y = info.m[1][2];
 
+	graphics.SetColor(RGB(200,75,30));
 	const unsigned int numLines = sizeof(shipPoints) / sizeof(*shipPoints);
 	for(unsigned int x = 0; x < numLines; x++){
 		const Vector3D& first = shipPoints[x] * info;
@@ -64,6 +62,15 @@ void Ship::drawShip(Graphics& graphics){
 			second.x, second.y);
 
 	}
+	Vector2D temp(info.m[0][2], info.m[1][2]);
+	turret.draw(graphics, temp);
+
+	//int mouseX, mouseY;
+	//Core::Input::GetMousePos( mouseX, mouseY );
+	//dValue.drawValue(graphics, 300,300,mouseX);
+	//dValue.drawValue(graphics, 300,310,mouseY);
+
+
 	graphics.SetColor(RGB(200,175,30));
 	if(mode == 'a'){
 		for(unsigned int x = 0; x < 4; x++){
@@ -73,18 +80,10 @@ void Ship::drawShip(Graphics& graphics){
 				second.x, second.y);
 		}
 	}
-	Vector2D temp(info.m[0][2], info.m[1][2]);
-	turret.draw(graphics, temp);
-
-	int mouseX, mouseY;
-	Core::Input::GetMousePos( mouseX, mouseY );
-	dValue.drawValue(graphics, 300,300,mouseX);
-	dValue.drawValue(graphics, 300,310,mouseY);
 }
 const int MAXSPEED = 600;
 const int PIXELSPEED = 500;
 void Ship::update(float dt){
-	sManager.update(dt);
 	accel.x = 0;
 	accel.y = -10;
 	Matrix3D mRotation;
@@ -119,7 +118,7 @@ void Ship::update(float dt){
 			Vector2D test(sin(-angle), -cos(-angle));
 			velocity  = velocity + (dt * PIXELSPEED) * test;
 		}
-		sManager.create(2, position);
+		effectManager.create(2, position);
 
 	}
 	if(Core::Input::IsPressed(81)){

@@ -4,28 +4,28 @@
 void GameManager::Draw(Core::Graphics& graphics){
 /////////////////////////////////////////////////////////////////////
 //updates
-	profiler.newFrame();
-	clock.lap();
+//	profiler.newFrame();
+//	clock.lap();
 	fpsClock.lap();
 
-	clock.start();
+//	clock.start();
 	myShip.update(dt);
-	clock.stop();
-	profiler.addEntry("Ship Update", clock.lastLapTime());
+//	clock.stop();
+//	profiler.addEntry("Ship Update", clock.lastLapTime());
 
-	clock.start();
-	eShip.update(dt);
-	clock.stop();
-	profiler.addEntry("Lerper Ship Update", clock.lastLapTime());
+//	clock.start();
+//	eShip.update(dt);
+//	clock.stop();
+//	profiler.addEntry("Lerper Ship Update", clock.lastLapTime());
 
-	clock.start();
-	orb.update(dt);
-	clock.stop();
-	profiler.addEntry("Orbit update", clock.lastLapTime());
+//	clock.start();
+//	orb.update(dt);
+//	clock.stop();
+//	profiler.addEntry("Orbit update", clock.lastLapTime());
 	
 	tShip.update(dt, myShip.position);
 
-	eManager.update(dt);
+	effectManager.update(dt);
 
 ////////////////////////////////////////////////////////////////////
 //draws
@@ -34,58 +34,58 @@ void GameManager::Draw(Core::Graphics& graphics){
 		int mouseX, mouseY;
 		Core::Input::GetMousePos( mouseX, mouseY );
 		Vector2D mouse((float)mouseX, (float)mouseY);
-		eManager.create(1,mouse);
+		effectManager.create(1,mouse);
 	}
 
 	//memory cleanup
-	eManager.clearMem();
+	effectManager.clearMem();
 
 	//FPS debug
 	graphics.SetColor(RGB(100,100,100));
-	graphics.DrawString(300,10,"SPF:");
-	dV.drawValue(graphics,330,10,(fpsClock.lastLapTime()));
-	graphics.DrawString(400,10,"FPS:");
-	dV.drawValue(graphics,430,10,1/fpsClock.lastLapTime());
+//	graphics.DrawString(300,10,"SPF:");
+//	dV.drawValue(graphics,330,10,(fpsClock.lastLapTime()));
+	graphics.DrawString(950,10,"FPS:");
+	dV.drawValue(graphics,950,20,1/fpsClock.lastLapTime());
 
 	//Draw myShip
-	clock.start();
+//	clock.start();
 	myShip.drawShip(graphics);
-	clock.stop();
-	profiler.addEntry("Ship Draw", clock.lastLapTime());
+//	clock.stop();
+//	profiler.addEntry("Ship Draw", clock.lastLapTime());
 
 	//Draw lerper
-	clock.start();
-	eShip.drawShip(graphics);
-	clock.stop();
-	profiler.addEntry("Lerper Ship Draw", clock.lastLapTime());
+//	clock.start();
+//	eShip.drawShip(graphics);
+//	clock.stop();
+//	profiler.addEntry("Lerper Ship Draw", clock.lastLapTime());
 
 	//Orbit draw
-	Matrix3D startTemp = Engine::Translation3D(800,500);
-	clock.start();
-	orb.draw(graphics, startTemp,Vector2D(20,20), 5);
-	clock.stop();
-	profiler.addEntry("Orbit Draw", clock.lastLapTime());
+//	Matrix3D startTemp = Engine::Translation3D(800,500);
+//	clock.start();
+//	orb.draw(graphics, startTemp,Vector2D(20,20), 5);
+//	clock.stop();
+//	profiler.addEntry("Orbit Draw", clock.lastLapTime());
 
 	//Instructions
-	graphics.SetColor(RGB(10,100,100));
-	graphics.DrawString(50,10,"Move ship with WASD or Arrow keys");
-	graphics.DrawString(50,23,"For one type of partical effect use right mouse button");
+//	graphics.SetColor(RGB(10,100,100));
+//	graphics.DrawString(50,10,"Move ship with WASD or Arrow keys");
+//	graphics.DrawString(50,23,"For one type of partical effect use right mouse button");
 
 	//Center point for orbit
-	graphics.SetColor(RGB(100,125,0));
-	graphics.DrawLine(790,500, 810, 500);
-	graphics.DrawLine(800,490, 800, 510);
-	graphics.DrawLine(790,500,800,490);
-	graphics.DrawLine(810,500,800,490);
-	graphics.DrawLine(790,500,800,510);
-	graphics.DrawLine(810,500,800,510);
-	graphics.SetColor(RGB(100,25,0));
+//	graphics.SetColor(RGB(100,125,0));
+//	graphics.DrawLine(790,500, 810, 500);
+//	graphics.DrawLine(800,490, 800, 510);
+//	graphics.DrawLine(790,500,800,490);
+//	graphics.DrawLine(810,500,800,490);
+//	graphics.DrawLine(790,500,800,510);
+//	graphics.DrawLine(810,500,800,510);
+//	graphics.SetColor(RGB(100,25,0));
 
 	//Enemy Ship draw
 	tShip.drawShip(graphics, myShip.turret.bullets);
 
 	//Effect manager draw
-	eManager.draw(graphics);
+	effectManager.draw(graphics);
 
 ////////////////////////////////////////////////////////////////////
 
@@ -109,13 +109,14 @@ GameManager::GameManager(){
 
 void GameManager::init(){
 	fpsClock.initialize();
-	clock.initialize();
+//	clock.initialize();
 	tShip.isAlive = true;
-	profiler.initialize("Profiler.csv");
+//	profiler.initialize("Profiler.csv");
 }
 
 void GameManager::shutdown(){
 	fpsClock.shutdown();
-	clock.shutdown();
-	profiler.shutdown();
+//	clock.shutdown();
+//	profiler.shutdown();
+	effectManager.clearMem();
 }

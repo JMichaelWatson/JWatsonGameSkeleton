@@ -22,12 +22,11 @@ public:
 	Ship myShip;
 	Random ran;
 	Clock fpsClock;
-	Clock clock;
+//	Clock clock;
 	float dt;
-	EnemyShip eShip;
+//	EnemyShip eShip;
 	TargetShip tShip;
 	Orbitz orb;
-	EffectManager eManager;
 	DrawValue dV;
 	void Draw(Core::Graphics& graphics);
 	void Update(float dt);

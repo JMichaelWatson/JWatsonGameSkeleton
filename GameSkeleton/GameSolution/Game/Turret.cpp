@@ -11,12 +11,13 @@ Vector2D tlines[] = {
 
 void Turret::draw(Graphics& graphics, Vector2D ship){
 	position = ship;
-	DrawValue dValue;
-	dValue.drawValue(graphics,500,600,ship);
-	dValue.drawValue(graphics,500,610,position);
-	dValue.drawValue(graphics,500,620,Engine::Translation3D(ship));
+	//DrawValue dValue;
+	//dValue.drawValue(graphics,500,600,ship);
+	//dValue.drawValue(graphics,500,610,position);
+	//dValue.drawValue(graphics,500,620,Engine::Translation3D(ship));
+	//dValue.drawValue(graphics,500,660, rotation);
 	matrix = Engine::Translation3D(ship)*rotation;
-	dValue.drawValue(graphics,500,660, rotation);
+	graphics.SetColor(RGB(70,245,30));
 	int num = sizeof(tlines)/ sizeof(*tlines);
 	for (int x = 0; x < num; x++){
 		Vector3D first = tlines[x] * matrix;

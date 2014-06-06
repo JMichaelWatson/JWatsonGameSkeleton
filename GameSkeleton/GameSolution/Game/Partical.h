@@ -7,6 +7,7 @@
 #include "Ship.h"
 #include "EnemyShip.h"
 #include "Orbitz.h"
+#include "ColorGen.h"
 
 using Core::Input;
 using Engine::Vector2D;
@@ -15,13 +16,14 @@ class Partical
 {
 public:
 	Partical();
+	Core::RGB color;
 	bool active;
 	float timeToLive;
 	Vector2D position;
 	Vector2D velocity;
 	void update(float dt);
 	void draw(Graphics& graphic);
-	void updateFire(float dt, Vector2D tstart, Vector2D mouse);
+	void updateFire(float dt, Vector2D tstart, Vector2D mouse, float timeToLive, Core::RGB color);
 };
 
 #endif

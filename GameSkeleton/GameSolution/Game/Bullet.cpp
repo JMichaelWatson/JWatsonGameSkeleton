@@ -14,6 +14,7 @@ void Bullet::draw(Graphics& graphics)
 {
 	postion = postion + velocity;
 	int num = (sizeof(bLines) / sizeof(*bLines));
+	graphics.SetColor(RGB(200,100,200));
 	for(int count = 0; count < num; count ++){
 		Vector2D first = bLines[count] + postion;
 		Vector2D second = bLines[(count+1)%num] + postion;
